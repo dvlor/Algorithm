@@ -25,59 +25,30 @@
   <div class="content">
     <canvas width="400" height="200"></canvas>
     <div>
-      <button>play</button>
+      <button onclick="play()">play</button>
       <button>next</button>
     </div>
   </div>
+  <script src="../js/QSortCanvas.js"></script>
   <script>
-    function QCanavs(el) {
-      this.context = el.getContext('2d');
-      var width = el.offsetWidth,
-          height = el.offsetHeight,
-          pillarWidth = 8,
-          pillarSpace = 2,
-          exchanges = [],
-          currentStep = 0;
-
-      init(this.context);
-
-      var _this = this;
-
-      function init(context) {
-        context.fillStyle="#f00";
-      }
-
-      this.setData = function (data) {
-        var startX = (width - data.length * (pillarSpace + pillarWidth) + pillarSpace) / 2;
-        var perwidth = pillarSpace + pillarWidth;
-        for(var i=0; i<data.length; i++) {
-          var d = data[i];
-          var pillarHeight = d * 4;
-          _this.context.fillRect(perwidth * i + startX, height - pillarHeight, pillarWidth, pillarHeight);
+    var canvas = new QSortCanavs(document.querySelector('canvas'));
+    var data = [19, 15, 18, 20, 5, 24, 1, 13, 16, 12, 5];
+    canvas.setData(data);
+    for(var i=0; i<data.length-1; i++) {
+      var min = i;
+      for(var j=i+1; j<data.length; j++) {
+        if (data[j] < data[min]) {
+          min = j;
         }
       }
-      
-      this.exch = function(src, dst) {
-        exchanges.push(src, dst);
-      }
-
-      this.next = function(callback) {
-      }
-
-      this.play = function (callback) {
-        if (this.currentStep <= this.exchanges.length) {
-          var _this = this;
-          this.next(function(){
-            _this.play(callback);
-          })
-        } else {
-          callback && callback()
-        }
+      if (min !== i) {
+        canvas.exch(data, min, i);
+    console.log(data)
       }
     }
-
-    var canvas = new QCanavs(document.querySelector('canvas'));
-    canvas.setData([1, 8, 9, 8, 3, 7]);
+    function play(){
+      canvas.play();
+    }
   </script>
 </body>
 </html>
