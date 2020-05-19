@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Sort</title>
+  <style>
+    .content{
+      width: 400px;
+      margin: 200px auto;
+    }
+    canvas{
+      width: 400px;
+      height: 200px;
+      margin-bottom: 10px;
+    }
+    button{
+      padding: 8px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <canvas width="400" height="200"></canvas>
+    <div>
+      <button>play</button>
+      <button>next</button>
+    </div>
+  </div>
+  <script>
+    function QCanavs(el) {
+      this.context = el.getContext('2d');
+      var width = el.offsetWidth,
+          height = el.offsetHeight,
+          pillarWidth = 8,
+          pillarSpace = 2,
+          exchanges = [],
+          currentStep = 0;
+
+      init(this.context);
+
+      var _this = this;
+
+      function init(context) {
+        context.fillStyle="#f00";
+      }
+
+      this.setData = function (data) {
+        var startX = (width - data.length * (pillarSpace + pillarWidth) + pillarSpace) / 2;
+        var perwidth = pillarSpace + pillarWidth;
+        for(var i=0; i<data.length; i++) {
+          var d = data[i];
+          var pillarHeight = d * 4;
+          _this.context.fillRect(perwidth * i + startX, height - pillarHeight, pillarWidth, pillarHeight);
+        }
+      }
+      
+      this.exch = function(src, dst) {
+        exchanges.push(src, dst);
+      }
+
+      this.next = function(callback) {
+      }
+
+      this.play = function (callback) {
+        if (this.currentStep <= this.exchanges.length) {
+          var _this = this;
+          this.next(function(){
+            _this.play(callback);
+          })
+        } else {
+          callback && callback()
+        }
+      }
+    }
+
+    var canvas = new QCanavs(document.querySelector('canvas'));
+    canvas.setData([1, 8, 9, 8, 3, 7]);
+  </script>
+</body>
+</html>
