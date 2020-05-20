@@ -37,18 +37,15 @@
     var canvas, playing = false;
     var staticInfo = {compare: 0, move: 0};
     document.body.appendChild(new statisticTool(staticInfo))
+
     init();
 
+
     function sort(data) {
-      for(var i=0; i < data.length - 1; i ++) {
-        var min = i;
-        for(var j = i + 1; j < data.length; j ++) {
-          if (compare(data[j], data[min])) {
-            min = j;
-          }
-        }
-        if (min !== i) {
-          exch(data, min, i);
+        var length = data.length;
+      for(var i=1; i < length; i ++) {
+        for(var j = i; j > 0 && compare(data[j], data[j-1]); j --) {
+            exch(data, j, j-1);
         }
       }
     }
