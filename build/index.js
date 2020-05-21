@@ -4,7 +4,7 @@ const builds = require('../src/chapters/build');
 const oper = process.argv[2];
 
 
-const dstDir = path.join(__dirname, '../doc/');
+const dstDir = path.join(__dirname, '../docs/');
 clean(dstDir);
 fs.mkdirSync(dstDir);
 copy([{
