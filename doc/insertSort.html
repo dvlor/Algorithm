@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Sort</title>
+  <link rel="stylesheet" href="../assets/statistic.css">
+  <style>
+    .content{
+      width: 400px;
+      margin: 200px auto;
+    }
+    canvas{
+      width: 400px;
+      height: 200px;
+      margin-bottom: 10px;
+    }
+    button{
+      padding: 8px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <canvas width="400" height="200"></canvas>
+    <div>
+      <button onclick="play()">play</button>
+      <button onclick="reset()">reset</button>
+    </div>
+  </div>
+  <script src="./js/statistics.js"></script>
+  <script src="./js/QSortCanvas.js"></script>
+  <script>
+    function sort(data) {
+  var length = data.length;
+  for(var i=1; i < length; i ++) {
+    for(var j = i; j > 0 && compare(data[j], data[j-1]); j --) {
+        exch(data, j, j-1);
+    }
+  }
+}
+  </script>
+  <script>
+    var data = [19, 15, 18, 20, 5, 24, 1, 13, 16, 12, 5];
+    var canvas, playing = false;
+    var staticInfo = {compare: 0, move: 0};
+    document.body.appendChild(new statisticTool(staticInfo))
+    init();
+    
+    function play(){
+      if (playing) {
+        return
+      }
+      playing = true
+      canvas.play(function(){
+        playing = false;
+      });
+    }
+
+    function reset() {
+      if (playing) {
+        return
+      }
+      canvas = init();
+    }
+
+    function init(){
+      var nData = data.concat([]);
+      canvas = createQSortCanavs(document.querySelector('canvas'), nData);
+      sort(nData)
+      return canvas;
+    }
+
+    function exch(data, min, i) {
+      staticInfo.move ++;
+      canvas.exch(data, min, i);
+    }
+
+    function compare(a, b) {
+      staticInfo.compare ++
+      return a < b;
+    }
+  </script>
+</body>
+</html>
