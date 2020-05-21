@@ -34,18 +34,21 @@
   <script src="./js/QSortCanvas.js"></script>
   <script>
     function sort(data) {
-  for(var i=0; i < data.length - 1; i ++) {
-    var min = i;
-    for(var j = i + 1; j < data.length; j ++) {
-      if (compare(data[j], data[min])) {
-        min = j;
-      }
+    var length = data.length;
+    var h = 1;
+    while (h < length / 3) {
+        h = 3*h + 1;
     }
-    if (min !== i) {
-      exch(data, min, i);
+
+    while (h >= 1) {
+        for (var i = h; i < length; i ++) {
+            for (var j=i; j>=h && compare(data[j], data[j-h]); j-=h){
+                exch(data, j, j-h);
+            }
+        }
+        h = parseInt(h / 3);
     }
   }
-}
   </script>
   <script>
     var data = [19, 15, 18, 20, 5, 24, 1, 13, 16, 12, 5, 60, 52, 34, 22, 15, 6, 3, 12, 8, 84];

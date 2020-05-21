@@ -9,7 +9,7 @@ function createQSortCanavs(el, data) {
 
     const pillarWidth = 8;
     const pillarSpace = 2;
-    const dataScale = 4;
+    const dataScale = 2;
 
 
     var canvasWidth = el.offsetWidth,
@@ -95,7 +95,7 @@ function createQSortCanavs(el, data) {
         context.restore()
         setTimeout(() => {
             callback && callback()
-        }, 500);
+        }, 200);
     }
 
     return {exch, play}
