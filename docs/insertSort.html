@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Select Sort</title>
-  <link rel="stylesheet" href="../assets/statistic.css">
+  <link rel="stylesheet" href="./assets/statistic.css">
   <style>
     .content{
       width: 400px;
@@ -43,7 +43,7 @@
 }
   </script>
   <script>
-    var data = [19, 15, 18, 20, 5, 24, 1, 13, 16, 12, 5, 60, 52, 34, 22, 15, 6, 3, 12, 8, 84];
+    var data = [21,87,103,108,186,22,100,182,9,140,92,58,182,46,180,66,181,8,131,164,132,165,23,126,67,71,160,149,161,114,173,159,151,4,88,170,7,136,61,93,84,101,80,34,97,185,55,15,189,187,9,70,111,109,87,29,54,149,133,18,39,47,89,100,108,42,95,121,63,69,127,190,172,64,106,149,14,30,184,80,29,48,138,18,124,14,20,28,84,14,62,93,156,11,194,174,6,18,39,10];
     var canvas, playing = false;
     var staticInfo = {compare: 0, move: 0};
     document.body.appendChild(new statisticTool(staticInfo))
@@ -80,7 +80,7 @@
 
     function compare(a, b) {
       staticInfo.compare ++
-      return a < b;
+      return a <= b;
     }
   </script>
 </body>

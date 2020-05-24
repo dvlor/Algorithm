@@ -79,6 +79,7 @@ function createQSortCanavs(el, data) {
     }
 
     function exch(data, src, dst) {
+        if (src === dst) { return; }
         exchanges.push([src, dst]);
         var tmp = data[dst];
         data[dst] = data[src];

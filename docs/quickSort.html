@@ -33,7 +33,36 @@
   <script src="./js/statistics.js"></script>
   <script src="./js/QSortCanvas.js"></script>
   <script>
-    $$
+    function sort(data){
+    _sort(data, 0, data.length - 1);
+}
+
+function _sort(data, lo, max) {
+    if (lo >= max) return;
+    var mid = partition(data, lo , max);
+    _sort(data, lo, mid -1);
+    _sort(data, mid+1, max);
+}
+
+function partition(data, lo, max) {
+    var min = data[lo];
+    var i = lo + 1;
+    var j = max;
+    while(true) {
+        while (compare(data[i], min) && i < j) {
+            i++;
+        }
+        if (compare(min, data[j]) && i < j) {
+            j --;
+        }
+        if (i >= j) {
+            break;
+        }
+        exch(data, i, j);
+    }
+    exch(data, lo, j);
+    return j;
+}
   </script>
   <script>
     var data = [21,87,103,108,186,22,100,182,9,140,92,58,182,46,180,66,181,8,131,164,132,165,23,126,67,71,160,149,161,114,173,159,151,4,88,170,7,136,61,93,84,101,80,34,97,185,55,15,189,187,9,70,111,109,87,29,54,149,133,18,39,47,89,100,108,42,95,121,63,69,127,190,172,64,106,149,14,30,184,80,29,48,138,18,124,14,20,28,84,14,62,93,156,11,194,174,6,18,39,10];
