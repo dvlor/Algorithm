@@ -20,7 +20,7 @@ function mergr(data, lo, mid, max) {
     }
     var current = lo;
     while(i < mid || j < max) {
-      if (i == mid || compare(aux[j], aux[i])) {
+      if (i == mid || compare(aux[j], aux[i]) < 0) {
         data[current ++] = aux[j++];
         continue;
       }

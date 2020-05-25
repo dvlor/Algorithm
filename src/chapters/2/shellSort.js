@@ -7,7 +7,7 @@ function sort(data) {
 
     while (h >= 1) {
         for (var i = h; i < length; i ++) {
-            for (var j=i; j>=h && compare(data[j], data[j-h]); j-=h){
+            for (var j=i; j>=h && compare(data[j], data[j-h]) < 0; j-=h){
                 exch(data, j, j-h);
             }
         }

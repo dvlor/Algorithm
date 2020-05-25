@@ -14,10 +14,10 @@ function partition(data, lo, max) {
     var i = lo + 1;
     var j = max;
     while(true) {
-        while (compare(data[i], min) && i < j) {
+        while (compare(data[i], min) < 0 && i < j) {
             i++;
         }
-        if (compare(min, data[j]) && i < j) {
+        if (compare(min, data[j]) < 0 && i < j) {
             j --;
         }
         if (i >= j) {

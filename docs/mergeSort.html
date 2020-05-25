@@ -55,7 +55,7 @@ function mergr(data, lo, mid, max) {
     }
     var current = lo;
     while(i < mid || j < max) {
-      if (i == mid || compare(aux[j], aux[i])) {
+      if (i == mid || compare(aux[j], aux[i]) < 0) {
         data[current ++] = aux[j++];
         continue;
       }
@@ -101,7 +101,7 @@ function mergr(data, lo, mid, max) {
 
     function compare(a, b) {
       staticInfo.compare ++
-      return a <= b;
+      return a <= b ? -1 : (a == b ? 0 : 1);
     }
   </script>
 </body>
