@@ -7,9 +7,9 @@ function createQSortCanavs(el, data) {
         throw 'el must be instance of HTMLCanvasElement'
     }
 
-    const pillarWidth = 8;
+    const pillarWidth = 4;
     const pillarSpace = 2;
-    const dataScale = 2;
+    const dataScale = 1;
 
 
     var canvasWidth = el.offsetWidth,
