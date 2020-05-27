@@ -68,9 +68,11 @@ function QTreeCanvas(el, node){
     return lLength > rLength ? lLength : rLength;
   }
 
-  var currentDeep = 1;
-  console.log(getDeep(node))
-  paint(context, startPoint, node, currentDeep, getDeep(node) - 1);
+  this.paint = function () {
+    var currentDeep = 1;
+    context.clear(0, 0, width, height);
+    paint(context, startPoint, node, currentDeep, getDeep(node) - 1);
+  }
 }
 
 function TNode(value) {
